@@ -1,0 +1,25 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Anonymous Vote Site </title>
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+</head>
+<body>
+   <!-- <a href="/polls/create/"><button> Add a New Poll </button> </a> -->
+   <a href="{% url 'create_poll' %}"><button> Add a New Poll </button> </a>
+    <h1>All topics</h1>
+    {% if topics %}
+        {% for item in topics %}
+        <article>
+            <div>{{ item.title }}</div>
+            <!-- <div><a href="/polls/{{ item.id }}">more details</a></div> -->
+            <div><a href="{% url 'view_poll_by_id' item.id %}">more details</a></div>
+        </article>
+        {% endfor %}
+    {% else %}
+        <div>No topic matches found! </div>
+    {% endif %}
+</body>
+</html>
